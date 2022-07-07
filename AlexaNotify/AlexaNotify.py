@@ -56,7 +56,7 @@ class AlexaNotify(commands.Cog):
        
        
     @commands.command(name="setaccesscode")
-    async def set_access_code(self, ctx: commands.Context, message: discord.Message, *args):
+    async def set_access_code(self, access_code:str, ctx: commands.Context, message: discord.Message):
         """
         What's this command for?
         To set your access code, necessary for Alexa Notifications to work.
@@ -77,10 +77,10 @@ class AlexaNotify(commands.Cog):
             await ctx.send("Please do this command again in your Direct Messages (DMS). For Privacy reasons.")
             return
 
-        if len(args) != 1:
+        if not access_code:
             await ctx.send("Please Go to your Amazon Alexa app on your mobile device and add 'NotifyMe' or 'Notify Me' to your Alexa's list of skills. Your linked Amazon email will be sent an access code. se the access code for this. ")
             return 
-        await self.conf.user(ctx.author).accessCode.set(args[0])
+        await self.conf.user(ctx.author).accessCode.set(access_code)
         await ctx.send("Your access code has been set.")
 
     @commands.command(name="removeaccesscode")
