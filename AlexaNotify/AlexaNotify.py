@@ -33,7 +33,7 @@ class AlexaNotify(commands.Cog):
             if (await self.conf.user(author).Alexa_activated()) and (await self.conf.user(author).accessCode()):
                 message = message.clean_content
                 accessCodeTransfer = self.conf.user(author).accessCode()
-                res = requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": (str(message) + str(message_author)), "accessCode": accessCodeTransfer})
+                res = await requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": (str(message) + str(message_author)), "accessCode": accessCodeTransfer})
 
 
     @commands.command(name="activatealexa")
