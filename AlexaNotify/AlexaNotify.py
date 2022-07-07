@@ -56,7 +56,7 @@ class AlexaNotify(commands.Cog):
        
        
     @commands.command(name="setaccesscode")
-    async def set_access_code(self, access_code:str, ctx: commands.Context, message: discord.Message):
+    async def set_access_code(self, ctx: commands.Context, message: discord.Message, access_code:str):
         """
         What's this command for?
         To set your access code, necessary for Alexa Notifications to work.
