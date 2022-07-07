@@ -30,7 +30,7 @@ class AlexaNotify(commands.Cog):
         for author in message.mentions:
             if (await self.conf.user(author).Alexa_activated == True) and (await self.conf.user(author).accessCode == True):
                 message = message.clean_content
-                res = requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": message, "accessCode": accessCode}, port=443, method="POST")
+                res = requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": (str(message) + str(message.author)), "accessCode": accessCode}, port=443, method="POST")
 
 
     @commands.command(name="activatealexa")
@@ -56,7 +56,7 @@ class AlexaNotify(commands.Cog):
        
        
     @commands.command(name="setaccesscode")
-    async def set_access_code(self, ctx: commands.Context, *args):
+    async def set_access_code(self, ctx: commands.Context, message: discord.Message, *args):
         """
         What's this command for?
         To set your access code, necessary for Alexa Notifications to work.
