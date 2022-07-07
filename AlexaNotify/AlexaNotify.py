@@ -28,7 +28,7 @@ class AlexaNotify(commands.Cog):
         if not message.channel.permissions_for(guild.me).send_messages:
             return
 
-        message_author = message.author
+        message_author = message.author.display_name
 
 
 
