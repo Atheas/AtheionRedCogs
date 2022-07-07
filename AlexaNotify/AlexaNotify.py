@@ -1,5 +1,6 @@
 import logging
 import requests 
+import json
 from collections import namedtuple
 
 import discord
@@ -29,11 +30,19 @@ class AlexaNotify(commands.Cog):
 
         message_author = message.author
 
+
+
         for author in message.mentions:
             if (await self.conf.user(author).Alexa_activated()) and (await self.conf.user(author).accessCode()):
                 message = message.clean_content
                 accessCodeTransfer = await self.conf.user(author).accessCode()
-                res = requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": (str(message) + str(message_author)), "accessCode": accessCodeTransfer})
+                str(accessCodeTransfer)
+                send_message = ". This is from" + str(message_author)+ str(message) 
+                body = json.dumps({
+                 "notification": send_message,
+                 "accessCode": accessCodeTransfer
+                })
+                requests.post(url = "https://api.notifymyecho.com/v1/NotifyMe", data = body)
 
 
     @commands.command(name="activatealexa")
