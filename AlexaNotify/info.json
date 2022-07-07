@@ -4,5 +4,6 @@
     "name" : "Adeic",
     "short" : "Atheion",
     "description" : "Put this in your bot and smoke it",
-	"tags": []
+	"tags": [],
+    "requirements": ["requests"]
 }

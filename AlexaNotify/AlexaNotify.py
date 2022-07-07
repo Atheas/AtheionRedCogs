@@ -3,7 +3,7 @@ import requests
 from collections import namedtuple
 
 import discord
-from redbot.core import checks, Config, commands, bot, message
+from redbot.core import checks, Config, commands, bot
 
 
 accessCode = namedtuple("accessCode", "text link")
