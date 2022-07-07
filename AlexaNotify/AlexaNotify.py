@@ -15,7 +15,7 @@ class AlexaNotify(commands.Cog):
         super().__init__(*args, **kwargs)
         self.bot = bot
         self.conf = Config.get_conf(self, force_registration=True)
-        self.conf.register_user(accessCode="", Alexa_activated=False)
+        self.conf.register_user(accessCode="", identifier=0x426f6f6b6d61726a , Alexa_activated=False)
         self.conf.register_guild()
     
 
