@@ -72,10 +72,10 @@ class AlexaNotify(commands.Cog):
         
         
         """
-        guild = message.guild
-        if (guild == True) or message.author.bot:
-            await ctx.send("Please do this command again in your Direct Messages (DMS). For Privacy reasons.")
-            return
+        # guild = message.guild
+        # if (guild == True) or message.author.bot:
+        #     await ctx.send("Please do this command again in your Direct Messages (DMS). For Privacy reasons.")
+        #     return
 
         if not access_code:
             await ctx.send("Please Go to your Amazon Alexa app on your mobile device and add 'NotifyMe' or 'Notify Me' to your Alexa's list of skills. Your linked Amazon email will be sent an access code. se the access code for this. ")
