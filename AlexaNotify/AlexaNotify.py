@@ -28,7 +28,7 @@ class AlexaNotify(commands.Cog):
             return
 
         for author in message.mentions:
-            if (await self.conf.user(author).Alexa_activated == True) and (await self.conf.user(author).accessCode == True):
+            if (await self.conf.user(author).Alexa_activated()) and (await self.conf.user(author).accessCode()):
                 message = message.clean_content
                 res = requests.post('https://api.notifymyecho.com/v1/NotifyMe', data={"notification": (str(message) + str(message.author)), "accessCode": accessCode}, port=443, method="POST")
 
@@ -36,7 +36,7 @@ class AlexaNotify(commands.Cog):
     @commands.command(name="activatealexa")
     async def activate_alexa(self, ctx: commands.Context):
         """Enable messages mentioning you to be sent to your Alexa device as a notification"""
-        if (await self.conf.user(ctx.author).accessCode == True):
+        if (await self.conf.user(ctx.author).accessCode()):
             await self.conf.user(ctx.author).Alexa_activated.set(True)
             await ctx.send("Your notifications has been enabled!")
 
@@ -47,7 +47,7 @@ class AlexaNotify(commands.Cog):
     @commands.command(name="deactivatealexa")
     async def deactivate_alexa(self, ctx: commands.Context):
         """Enable messages mentioning you to be sent to your Alexa device as a notification"""
-        if (await self.conf.user(ctx.author).Alexa_activated == False):
+        if (await self.conf.user(ctx.author).Alexa_activated() != False):
             await self.conf.user(ctx.author).Alexa_activated.set(False)
             await ctx.send("Your notifications has been disabled!")
 
@@ -89,7 +89,7 @@ class AlexaNotify(commands.Cog):
         Remove your access code.
     
         """
-        if (await self.conf.user(ctx.author).accessCode == True):
+        if (await self.conf.user(ctx.author).accessCode()):
             await self.conf.user(ctx.author).accessCode.set("")
             await ctx.send("Your access code has been removed.")
         else:
